@@ -14,13 +14,13 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
 
       this._runtime.Tick = async (...args) => {
         const now = Date.now() / 1000;
-        if (maxFPS <= 0 || now - lastTime >= 1 / maxFPS) {
+        if (this.maxFPS <= 0 || now - lastTime >= 1 / this.maxFPS) {
           await oldFn(...args);
           lastTime = now;
         } else {
           setTimeout(() => {
             requestAnimationFrame(sdk_runtime.Tick);
-          }, (now - lastTime - 1 / maxFPS) * 1000 - 1);
+          }, (now - lastTime - 1 / this.maxFPS) * 1000 - 1);
         }
       };
     }
