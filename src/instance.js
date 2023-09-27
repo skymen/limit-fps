@@ -19,7 +19,7 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
           lastTime = now;
         } else {
           setTimeout(() => {
-            requestAnimationFrame(sdk_runtime.Tick);
+            requestAnimationFrame(this._runtime.Tick);
           }, (now - lastTime - 1 / this.maxFPS) * 1000 - 1);
         }
       };
