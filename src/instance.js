@@ -18,14 +18,18 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
           await oldFn(...args);
           lastTime = now;
         } else {
-          setTimeout(() => {
-            /* requestAnimationFrame((timestamp) => {
+          requestAnimationFrame((timestamp) => {
+            args[0] = timestamp;
+            this._runtime.Tick(...args);
+          });
+          /* setTimeout(() => {
+            requestAnimationFrame((timestamp) => {
               args[0] = timestamp
               this._runtime.Tick(...args);
-            }); */
-            args[0] = Date.now() / 1000;
-            this._runtime.Tick(...args);
-          }, (now - lastTime - 1 / this.maxFPS) * 1000 - 1);
+            });
+            // args[0] = Date.now() / 1000;
+            // this._runtime.Tick(...args);
+          }, (now - lastTime - 1 / this.maxFPS) * 1000 - 1); */
         }
       };
     }

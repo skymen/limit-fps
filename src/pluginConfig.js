@@ -3,7 +3,7 @@ module.exports = {
   addonType: "plugin",
   id: "skymen_limit_fps",
   name: "limit_fps",
-  version: "1.0.0.3",
+  version: "1.0.0.4",
   category:
     // "3d",
     // "data-and-storage",
