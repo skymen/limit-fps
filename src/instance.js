@@ -9,17 +9,21 @@ function getInstanceJs(parentClass, scriptInterface, addonTriggers, C3) {
         this.maxFPS = properties[0];
       }
 
-      let lastTime = Date.now() / 1000;
+      let lastTime = performance.now();
       const oldFn = this._runtime.Tick.bind(this._runtime);
 
       this._runtime.Tick = async (...args) => {
-        const now = Date.now() / 1000;
-        if (this.maxFPS <= 0 || now - lastTime >= 1 / this.maxFPS) {
-          await oldFn(...args);
+        const now = args[0];
+        const timeDelta = now - lastTime;
+        const frameTime = 1000 / this.maxFPS;
+        if (this.maxFPS <= 0 || timeDelta >= frameTime) {
           lastTime = now;
+          await oldFn(...args);
         } else {
-          requestAnimationFrame((timestamp) => {
+          C3.RequestUnlimitedAnimationFrame((timestamp) => {
             args[0] = timestamp;
+            this._runtime._rafId = -1;
+            this._runtime._ruafId = -1;
             this._runtime.Tick(...args);
           });
           /* setTimeout(() => {
