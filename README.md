@@ -1,6 +1,6 @@
 <img src="./src/icon.svg" width="100" /><br>
-# limit_fps <br>
-Description <br>
+# Limit FPS <br>
+Set a hard limit on the maximum FPS of your game <br>
 <br>
 Author: skymen <br>
 <sub>Made using [c3ide2-framework](https://github.com/ConstructFund/c3ide2-framework) </sub><br>
